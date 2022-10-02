@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {merge, keyBy, values} from 'lodash';
 
 const initialState = {
     ticker:[]
@@ -11,9 +12,15 @@ const tradeSlice = createSlice({
         triggerTicker(){
 
         },
-        setTicker(state,action) {
+        closeTicker(){
+
+        },
+        setTicker(state, action) {
             console.log('here setTicker in',action)
-            state.ticker = action.payload.ticker;
+
+            const merged = merge(keyBy(state.ticker, 'code'), action.payload.ticker);
+
+            state.ticker = values(merged);
         }
     }
 })
