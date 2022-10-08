@@ -76,7 +76,7 @@ export function* handleSocketTicker(codes) {
                     const {code} = data;
 
                     if(latestObj[code]) {
-                        latestObj[code] = latestObj.timestamp > data.timestamp ?
+                        latestObj[code] = latestObj[code].timestamp > data.timestamp ?
                         latestObj[code] : data;
                     } else {
                         latestObj[code] = data;
